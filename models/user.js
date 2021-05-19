@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const {
   Model
 } = require('sequelize');
+const garagecurrent = require('./garagecurrent');
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -13,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // models.user.belongsTo(garagecurrent);
+      models.user.belongsToMany(models.car, {through: 'allcars'}); //user can have many cars
+      models.user.hasOne(models.garagecurrent); //user has one current garage
+      models.user.hasOne(models.garagedream); // user also has a dream garage
+
+
     }
   };
   user.init({
