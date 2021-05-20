@@ -1,0 +1,16 @@
+<h1>Current Garage</h1>
+<form action="/currentgarage" method="POST">
+    <label for="car-make">Make</label>
+    <input required id="car-make" type="make" name="make">
+  
+    <label for="car-model">Model</label>
+    <input required id="car-model" type="model" name="model">
+  
+    <input type="submit" value="Add car">
+  </form>
+  
+  <li>
+    <%= make %>
+    <%= model %>
+    <%= description %>
+  </li>

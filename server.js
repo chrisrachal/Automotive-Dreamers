@@ -6,6 +6,8 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
+const db = require('./models');
+const axios = require('axios');
 
 const SECRET_SESSION = process.env.SECRET_SESSION;
 
@@ -35,6 +37,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/auth', require('./controllers/auth'));
+app.use('/cars', require('./controllers/cars'));
+
+// start
 app.get('/', (req, res) => {
   res.render('index', {});
 });
@@ -44,7 +50,25 @@ app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile', { id, name, email });
 });
 
-app.use('/auth', require('./controllers/auth'));
+app.get('/currentgarage', (req, res) => {
+  res.render('currentgarage')
+})
+
+app.get('/dreamgarage', (req, res) => { 
+  res.render('dreamgarage')
+})
+
+
+// app.post('/addcars', (req, res) => {
+//   db.addcars.findAll()
+//   .then(result => {
+//     console.log(result)
+//   })
+//   .catch(error => console.error(error))
+
+// })
+
+
 
 
 const PORT = process.env.PORT || 3000;

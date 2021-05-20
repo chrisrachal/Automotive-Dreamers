@@ -1,0 +1,18 @@
+<h1>Add cars to your garage of choice</h1>
+<form action="/cars/addcars" method="POST">
+    <label for="car-make">Make</label>
+    <input required id="car-make" type="make" name="make">
+  
+    <label for="car-model">Model</label>
+    <input required id="car-model" type="model" name="model">
+  
+    <label for="garage">Garage Type</label>
+    <select name="garage" id="garage">
+        <option value="current">Current Garage</option>
+        <option value="dream">Dream Garage</option>
+    </select>
+
+
+    <input type="submit" value="Add Car">
+  </form>
+  
