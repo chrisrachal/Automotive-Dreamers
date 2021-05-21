@@ -10,6 +10,7 @@ router.get('/addcars', isLoggedIn, (req, res) => {
     res.render('addcars')
   })
 
+
 router.post('/addcars', isLoggedIn, (req,res) => {
     console.log(req.body)
     db.car.create(req.body)
@@ -20,7 +21,11 @@ router.post('/addcars', isLoggedIn, (req,res) => {
             console.log(foundUser);
             foundUser.addCar(newCar)
             .then(addedCar => {
-                res.send(addedCar)
+              if (req.body.garage === 'current'){
+                res.redirect('/cars/currentgarage')
+              } else {
+                res.redirect('/cars/dreamgarage')
+              }
             })
         })
     
@@ -30,18 +35,48 @@ router.post('/addcars', isLoggedIn, (req,res) => {
         res.redirect('/cars')
     })
 })
-router.get('/addcars', isLoggedIn, (req, res) => {
-    db.car.findAll()
-    .then(cars => {
-        console.log(cars)
-    })
-    .catch(err => {
-        console.log(err)
-    })
+
+router.get('/currentgarage', isLoggedIn, (req, res) => {
+//     db.car.findAll({
+//       where: {userId: req.user.id, garage: 'current'}
+//     })
+//     .then(cars => {
+//         console.log(cars)
+//     })
+//     .catch(err => {
+//         console.log(err)
+//     })
+      db.user.findOne({
+        where: {id:req.user.id}
+      })
+      .then(user => {
+        user.getCars()
+        .then(cars => {
+          console.log(cars)
+        })
+      })
 })
-    
 
-
+router.get('/dreamgarage', isLoggedIn, (req, res) => {
+  //     db.car.findAll({
+  //       where: {userId: req.user.id, garage: 'current'}
+  //     })
+  //     .then(cars => {
+  //         console.log(cars)
+  //     })
+  //     .catch(err => {
+  //         console.log(err)
+  //     })
+        db.user.findOne({
+          where: {id:req.user.id}
+        })
+        .then(user => {
+          user.getCars()
+          .then(cars => {
+            console.log(cars)
+          })
+        })
+  })
 
 module.exports = router;
 
@@ -57,4 +92,15 @@ module.exports = router;
 //       where: {name: req.body},
 //       defaults: {name: req.body}
 //     })
+// })
+// router.get('/:id', isLoggedIn, (req, res) => {
+//   db.user.findOne({
+//     include: [db.car],
+//     where: {id: req.params.id}
+//   }).then((author) => {
+//     res.render('authors/show', { author: author })
+//   }).catch((error) => {
+//     console.log(error)
+//     res.status(400).render('main/404')
+//   })
 // })

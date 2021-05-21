@@ -42,8 +42,8 @@ const router = require('./controllers/auth');
 //       'https://parseapi.back4app.com/classes/Carmodels_Car_Model_List_McLaren?limit=10&excludeKeys=Year',
 //       {
 //         headers: {
-//           'X-Parse-Application-Id': 'L07uNhcWYXFfffuSH2ibNiOgqTDXj5HPhcPWV74i', // This is your app's application id
-//           'X-Parse-REST-API-Key': 'WiNz0ugnqWcxoXhe6WXPdwnzMSDgvqWg7tA0tb2A', // This is your app's REST API key
+//           'X-Parse-Application-Id': '', // This is your app's application id
+//           'X-Parse-REST-API-Key': '', // This is your app's REST API key
 //         }
 //       }
 //     );
@@ -60,8 +60,8 @@ const router = require('./controllers/auth');
 //     `https://parseapi.back4app.com/classes/Carmodels_Car_Model_List_${carName}limit=10&keys=Make,Model`,
 //     {
 //       headers: {
-//         'X-Parse-Application-Id': 'L07uNhcWYXFfffuSH2ibNiOgqTDXj5HPhcPWV74i', // This is your app's application id
-//         'X-Parse-REST-API-Key': 'WiNz0ugnqWcxoXhe6WXPdwnzMSDgvqWg7tA0tb2A', // This is your app's REST API key
+//         'X-Parse-Application-Id': '', // This is your app's application id
+//         'X-Parse-REST-API-Key': '', // This is your app's REST API key
 //       }
 //     }
 //   );
@@ -69,9 +69,9 @@ const router = require('./controllers/auth');
 //   console.log(JSON.stringify(data, null, 2));
 // })();
 
-router.get('/addcars', async (req, res) => {
-  console.log(req.query.search);
-  const results = await axios.get('https://parseapi.back4app.com/classes/Car_Model_List_BMW/m3')
-  console.log(results.data.search)
-  res.render('/addcars', { carResults: results.data.search ? results.data.search : [] });
-})
+// router.get('/addcars', async (req, res) => {
+//   console.log(req.query.search);
+//   const results = await axios.get('https://parseapi.back4app.com/classes/Car_Model_List_BMW/m3')
+//   console.log(results.data.search)
+//   res.render('/addcars', { carResults: results.data.search ? results.data.search : [] });
+// })
