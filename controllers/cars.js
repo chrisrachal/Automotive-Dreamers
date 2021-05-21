@@ -13,18 +13,18 @@ router.get('/addcars', isLoggedIn, (req, res) => {
 
 router.post('/addcars', isLoggedIn, (req,res) => {
     console.log(req.body)
-    db.car.create(req.body)
+    db.car.create(req.body) //creates car on add cars page
     .then(newCar => {
         console.log(newCar);
-        db.user.findByPk(req.user.id)
+        db.user.findByPk(req.user.id) //finds user
         .then(foundUser => {
             console.log(foundUser);
             foundUser.addCar(newCar)
             .then(addedCar => {
-              if (req.body.garage === 'current'){
-                res.redirect('/cars/currentgarage')
+              if (req.body.garage === 'current'){ //redirects to current garage is selected, else redirect to dream garage
+                res.redirect('/currentgarage')
               } else {
-                res.redirect('/cars/dreamgarage')
+                res.redirect('/dreamgarage')
               }
             })
         })
@@ -77,6 +77,8 @@ router.get('/dreamgarage', isLoggedIn, (req, res) => {
           })
         })
   })
+
+ 
 
 module.exports = router;
 

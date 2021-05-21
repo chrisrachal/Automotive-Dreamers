@@ -1,5 +1,5 @@
 <h1>Current Garage</h1>
-<form action="/cars/currentgarage" method="POST">
+<!-- <form action="/currentgarage" method="POST">
     <label for="car-make">Make</label>
     <input required id="car-make" type="make" name="make">
   
@@ -7,5 +7,10 @@
     <input required id="car-model" type="model" name="model">
   
     <input type="submit" value="Add car">
-  </form>
+  </form> -->
+  
+  <% data.forEach(car => { %>
+    <li><%= car.dataValues.make + " " + car.dataValues.model %></li>
+    <ul><%= car.dataValues.description %></ul>
+  <% }) %>
   
