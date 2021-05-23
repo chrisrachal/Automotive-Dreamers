@@ -12,19 +12,6 @@ const router = express.Router();
 const fetch = require('node-fetch')
 const SECRET_SESSION = process.env.SECRET_SESSION;
 
-// (async () => {
-//   const response = await fetch(
-//     'https://parseapi.back4app.com/classes/Carmodels_Car_Model_List_Ford?limit=10&keys=Make,Model',
-//     {
-//       headers: {
-//         'X-Parse-Application-Id': process.env.X_PARSE_APPLICATION_ID, // This is your app's application id
-//         'X-Parse-REST-API-Key': process.env.X_PARSE_REST_API_KEY, // This is your app's REST API key
-//       }
-//     }
-//   );
-//   const data = await response.json(); // Here you have the data that you need
-//   console.log(JSON.stringify(data, null, 2));
-// })();
 
 
 app.set('view engine', 'ejs');
@@ -65,6 +52,31 @@ app.get('/profile', isLoggedIn, (req, res) => {
   const { id, name, email } = req.user.get();
   res.render('profile', { id, name, email });
 });
+
+app.get('/carinspiration', isLoggedIn, (req, res) => {
+  res.render('carinspiration')
+})
+
+app.post('/carinspiration', isLoggedIn, async (req, res) => {
+  //Hit the API and pass in the results from the form
+  console.log(req.body)
+  const response = await fetch(
+    `https://parseapi.back4app.com/classes/Carmodels_Car_Model_List_${req.body.make}?limit=10&keys=Make,Model`,
+    {
+      headers: {
+        'X-Parse-Application-Id': process.env.X_PARSE_APPLICATION_ID, // This is your app's application id
+        'X-Parse-REST-API-Key': process.env.X_PARSE_REST_API_KEY, // This is your app's REST API key
+      }
+    }
+  );
+  const {results} = await response.json(); // Here you have the data that you need
+  // const [red, green] = results;
+  console.log(results);
+  res.render('results', {results});
+})
+
+
+
 
 // app.get('/currentgarage', isLoggedIn, (req, res) => {
 //   const { id, name} = req.user.get();
@@ -108,6 +120,10 @@ app.get('/dreamgarage', isLoggedIn, (req, res) => {
 })
 })
 
+app.get('/results', isLoggedIn, (req, res) => {
+  res.render('results')
+})
+
 // app.get('/dreamgarage', (req, res) => { 
 //   res.render('dreamgarage')
 // })
@@ -134,3 +150,24 @@ const server = app.listen(PORT, () => {
 });
 
 module.exports = server;
+
+//STASH
+
+// app.post('/carinspiration', isLoggedIn, async (req, res) => {
+//   //Hit the API and pass in the results from the form
+//   console.log(req.body)
+//   const response = await fetch(
+//     `https://parseapi.back4app.com/classes/Carmodels_Car_Model_List_${req.body.make}?limit=10&keys=Make,Model`,
+//     {
+//       headers: {
+//         'X-Parse-Application-Id': process.env.X_PARSE_APPLICATION_ID, // This is your app's application id
+//         'X-Parse-REST-API-Key': process.env.X_PARSE_REST_API_KEY, // This is your app's REST API key
+//       }
+//     }
+//   );
+//   const {results} = await response.json(); // Here you have the data that you need
+//   const {make, model} = [res.Make, res.Model]
+//   console.log(results);
+//   res.render('results', {results});
+  
+// })
