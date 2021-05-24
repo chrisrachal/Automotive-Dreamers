@@ -9,18 +9,9 @@ Automotive Dreamers is a fullstack application that was created to bring like mi
 
 ### Code Snippets
 
-![alt text](https://imgur.com/a/v6TT4Yp)
-### Default Routes
+![Screen Shot 2021-05-24 at 9 18 16 AM](https://user-images.githubusercontent.com/81945798/119362279-25b75e80-bc72-11eb-8742-f93ec258693d.png)
 
-| Method | Path | Location | Purpose |
-| ------ | ---------------- | -------------- | ------------------- |
-| GET | / | server.js | Home page |
-| GET | /auth/login | auth.js | Login form |
-| GET | /auth/signup | auth.js | Signup form |
-| POST | /auth/login | auth.js | Login user |
-| POST | /auth/signup | auth.js | Creates User |
-| GET | /auth/logout | auth.js | Removes session info |
-| GET | /profile | server.js | Regular User Profile |
+![Screen Shot 2021-05-24 at 9 29 33 AM](https://user-images.githubusercontent.com/81945798/119362719-9e1e1f80-bc72-11eb-8d35-4552bf4848d7.png)
 
 
 
