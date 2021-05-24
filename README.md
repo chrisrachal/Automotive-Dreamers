@@ -4,7 +4,7 @@ https://automotive-dreamers.herokuapp.com/
 
 ## What is Automotive Dreamers?
 
-Automotive Dreamers is a fullstack application that was created to bring car enthusiasts together through their love of cars.
+Automotive Dreamers is an application that was created to bring car enthusiasts together through their love of cars.
 
 ### How to use
 
