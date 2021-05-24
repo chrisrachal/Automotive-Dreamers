@@ -36,6 +36,8 @@ router.post('/addcars', isLoggedIn, (req,res) => {
     })
 })
 
+
+
 router.get('/currentgarage', isLoggedIn, (req, res) => {
 //     db.car.findAll({
 //       where: {userId: req.user.id, garage: 'current'}

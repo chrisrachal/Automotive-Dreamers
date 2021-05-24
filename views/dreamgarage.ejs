@@ -12,6 +12,11 @@
 
   <% data.forEach(car => { %>
     <li><%= car.dataValues.make + " " + car.dataValues.model %></li>
-    <ul><%= car.dataValues.description %></ul>
+    <ul><%= car.dataValues.description %>
+      <form method="POST" action="/dreamgarage/?_method=DELETE">
+        <input type="hidden" value="<%=car.dataValues.id%>" name="id">
+        <input type="submit" value="Delete">
+    </form>
+    </ul>
   <% }) %>
   

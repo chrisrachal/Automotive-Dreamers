@@ -9,10 +9,11 @@ const isLoggedIn = require('./middleware/isLoggedIn');
 const db = require('./models');
 const axios = require('axios');
 const router = express.Router();
-const fetch = require('node-fetch')
+const fetch = require('node-fetch');
+const methodOverride = require('method-override');
 const SECRET_SESSION = process.env.SECRET_SESSION;
 
-
+app.use(methodOverride('_method'));
 
 app.set('view engine', 'ejs');
 
@@ -130,6 +131,51 @@ app.get('/results', isLoggedIn, (req, res) => {
 
 
 
+app.delete('/dreamgarage', isLoggedIn, (req, res) => {
+  // console.log(req.body.)
+  db.car.findOne({
+    where: {id: req.body.id}
+  }) //creates car on add cars page
+  .then(foundCar => {
+      console.log(foundCar);
+      db.user.findByPk(req.user.id) //finds user
+      .then(foundUser => {
+          console.log(foundUser);
+          foundUser.removeCar(foundCar)
+          .then(removedCar => {
+            res.redirect('/dreamgarage')
+          })
+      })
+  
+  })
+  .catch(err => {
+      console.log(err);
+      res.redirect('/cars')
+  })
+})
+
+
+app.delete('/currentgarage', isLoggedIn, (req, res) => {
+  // console.log(req.body.)
+  db.car.findOne({
+    where: {id: req.body.id}
+  }) //creates car on add cars page
+  .then(foundCar => {
+      console.log(foundCar);
+      db.user.findByPk(req.user.id) //finds user
+      .then(foundUser => {
+          console.log(foundUser);
+          foundUser.removeCar(foundCar)
+          .then(removedCar => {
+            res.redirect('/currentgarage')
+          })
+      })
+  })
+  .catch(err => {
+      console.log(err);
+      res.redirect('/cars')
+  })
+})
 
 
 // app.post('/addcars', (req, res) => {
