@@ -8,9 +8,9 @@ Automotive Dreamers is a fullstack application that was created to bring like mi
 
 ### How to use
 
-Create an account and log in
-Start by navigating to the add cars section and add cars to your garages
-If you need a little inspiration for a car model you'd like to add, search for a car through the car inspiration tab
+* Create an account and log in
+* Start by navigating to the add cars section and add cars to your garages
+* If you need a little inspiration for a car model you'd like to add, search for a car through the car inspiration tab
 
 #### Code Snippets
 
