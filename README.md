@@ -34,11 +34,7 @@ router.post('/addcars', isLoggedIn, (req,res) => {
         })
     
     })
-    .catch(err => {
-        console.log(err);
-        res.redirect('/cars')
-    })
-})
+
 ```
 
 ```js
