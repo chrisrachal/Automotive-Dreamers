@@ -78,25 +78,6 @@ app.post('/carinspiration', isLoggedIn, async (req, res) => {
 
 
 
-
-// app.get('/currentgarage', isLoggedIn, (req, res) => {
-//   const { id, name} = req.user.get();
-//   res.render('currentgarage', { id, name });
-// })
-
-// app.get('/currentgarage', isLoggedIn, (req, res) => {
-//   const { make, model, description} = db.car.findAll({
-//     where: {id:req.user.id}
-//   })
-//   .then(user => {
-//     user.getCars()
-//     .then(cars => {
-//       console.log(cars)
-//     })
-//   })
-//   res.render('currentgarage', { make, model, description});
-// })
-
 app.get('/currentgarage', isLoggedIn, (req, res) => {
     db.user.findOne({
     where: {id:req.user.id},
@@ -124,11 +105,6 @@ app.get('/dreamgarage', isLoggedIn, (req, res) => {
 app.get('/results', isLoggedIn, (req, res) => {
   res.render('results')
 })
-
-// app.get('/dreamgarage', (req, res) => { 
-//   res.render('dreamgarage')
-// })
-
 
 
 app.delete('/dreamgarage', isLoggedIn, (req, res) => {
@@ -178,17 +154,6 @@ app.delete('/currentgarage', isLoggedIn, (req, res) => {
 })
 
 
-// app.post('/addcars', (req, res) => {
-//   db.addcars.findAll()
-//   .then(result => {
-//     console.log(result)
-//   })
-//   .catch(error => console.error(error))
-
-// })
-
-
-
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
@@ -196,24 +161,3 @@ const server = app.listen(PORT, () => {
 });
 
 module.exports = server;
-
-//STASH
-
-// app.post('/carinspiration', isLoggedIn, async (req, res) => {
-//   //Hit the API and pass in the results from the form
-//   console.log(req.body)
-//   const response = await fetch(
-//     `https://parseapi.back4app.com/classes/Carmodels_Car_Model_List_${req.body.make}?limit=10&keys=Make,Model`,
-//     {
-//       headers: {
-//         'X-Parse-Application-Id': process.env.X_PARSE_APPLICATION_ID, // This is your app's application id
-//         'X-Parse-REST-API-Key': process.env.X_PARSE_REST_API_KEY, // This is your app's REST API key
-//       }
-//     }
-//   );
-//   const {results} = await response.json(); // Here you have the data that you need
-//   const {make, model} = [res.Make, res.Model]
-//   console.log(results);
-//   res.render('results', {results});
-  
-// })
