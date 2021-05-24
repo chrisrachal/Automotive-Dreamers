@@ -14,9 +14,47 @@ Automotive Dreamers is a fullstack application that was created to bring car ent
 
 #### Code Snippets
 
-![Screen Shot 2021-05-24 at 9 18 16 AM](https://user-images.githubusercontent.com/81945798/119362279-25b75e80-bc72-11eb-8742-f93ec258693d.png)
+```js
+router.post('/addcars', isLoggedIn, (req,res) => {
+    console.log(req.body)
+    db.car.create(req.body) //creates car on add cars page
+    .then(newCar => {
+        console.log(newCar);
+        db.user.findByPk(req.user.id) //finds user
+        .then(foundUser => {
+            console.log(foundUser);
+            foundUser.addCar(newCar)
+            .then(addedCar => {
+              if (req.body.garage === 'current'){ //redirects to current garage is selected, else redirect to dream garage
+                res.redirect('/currentgarage')
+              } else {
+                res.redirect('/dreamgarage')
+              }
+            })
+        })
+    
+    })
+    .catch(err => {
+        console.log(err);
+        res.redirect('/cars')
+    })
+})
+```
 
-![Screen Shot 2021-05-24 at 9 29 33 AM](https://user-images.githubusercontent.com/81945798/119362719-9e1e1f80-bc72-11eb-8d35-4552bf4848d7.png)
+```js
+app.get('/currentgarage', isLoggedIn, (req, res) => {
+    db.user.findOne({
+    where: {id:req.user.id},
+    include: [{model: db.car, where:{garage:'current'}}]
+  }).then (function(user) {
+    console.log(user.cars)
+    const { make, model, description} = [req.body.make, req.body.model, req.body.description]
+    // console.log(make, model, description)
+    res.render('currentgarage', { data: user.cars});
+  })
+})
+```
+
 
 
 ##### Future Considerations
