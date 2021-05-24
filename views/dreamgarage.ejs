@@ -1,21 +1,12 @@
 <h1>Dream Garage</h1>
-<!-- <form action="/dreamgarage" method="POST">
-    <label for="car-make">Make</label>
-    <input required id="car-make" type="make" name="make">
-  
-    <label for="car-model">Model</label>
-    <input required id="car-model" type="model" name="model">
-  
-    <input type="submit" value="Add car">
-  </form> -->
-  
 
   <% data.forEach(car => { %>
     <li><%= car.dataValues.make + " " + car.dataValues.model %></li>
     <ul><%= car.dataValues.description %>
       <form method="POST" action="/dreamgarage/?_method=DELETE">
         <input type="hidden" value="<%=car.dataValues.id%>" name="id">
-        <input type="submit" value="Delete">
+        <input type="submit" class="btn btn-outline-danger" value="Delete">
+        
     </form>
     </ul>
   <% }) %>

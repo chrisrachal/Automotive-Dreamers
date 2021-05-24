@@ -15,7 +15,7 @@
     <ul><%= car.dataValues.description %>
       <form method="POST" action="/currentgarage/?_method=DELETE">
         <input type="hidden" value="<%=car.dataValues.id%>" name="id">
-        <input type="submit" value="Delete">
+        <input type="submit" class="btn btn-outline-danger" value="Delete">
     </form>
     </ul>
   <% }) %>
