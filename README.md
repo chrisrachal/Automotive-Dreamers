@@ -14,4 +14,10 @@ Automotive Dreamers is a fullstack application that was created to bring like mi
 ![Screen Shot 2021-05-24 at 9 29 33 AM](https://user-images.githubusercontent.com/81945798/119362719-9e1e1f80-bc72-11eb-8d35-4552bf4848d7.png)
 
 
+#### Future Considerations
 
+I'd like to give users the ability to add profile pictures and car images
+
+Add a chatting/comment ability to a garage
+
+Add a top garages section based on amount of likes
